@@ -26,7 +26,7 @@ class stud
 int main()
 {
 	stud n1;
-	int n=3,i,r,ch;
+	int n,i,r,ch;
 	int flag=0;
 	char choice;
 	fstream f;
@@ -37,7 +37,9 @@ int main()
 		cout<<"\n2.Display";
 		cout<<"\n3.Search";
 		cout<<"\n4.update";
-		cout<<"\n5.exit";
+		cout<<"\n5.Add";		
+		cout<<"\n6.exit";
+
 		cout<<"\nEnter ur Choice = ";	
 		cin>>ch;
 		switch(ch)
@@ -51,9 +53,11 @@ int main()
 				}
 				break;
 			case 2:f.seekg(0,ios::beg);
-				for(i=0;i<n;i++)
+				while(1)
 				{		
 					f.read((char*)&n1,sizeof(stud));
+					if(f.eof()!=0)
+						break;
 					n1.show();
 				}
 				break;
@@ -87,6 +91,12 @@ int main()
 						f.write((char*)&n1,sizeof(stud));
 					}		
 				}
+				break;
+			case 5: f.open("Stud.txt", ios::app|ios::out);
+				f.seekp(0,ios::end);
+				n1.get();
+				f.write((char*)&n1,sizeof(stud));
+				n++;				
 				break;
 			
 		}
