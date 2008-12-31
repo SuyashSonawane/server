@@ -1,4 +1,5 @@
 #include<iostream>
+#include<fstream>
 #include<string.h>
 
 using namespace std;
@@ -6,35 +7,94 @@ using namespace std;
 class stud
 {
 	private:int roll;
-		float per;
-		char name[20];
-		string addr;
-		char gender;
-	
-	public:stud()
+		float per;		
+			
+	public:void get()
 		{
-			roll=0;
-			per=0;
-			strcpy(name,"no Name");
-			addr="No Addr";
-			gender='x';
+		cout<<"\n Enter Roll  = ";cin>>roll;		
+		cout<<"\nEnter Per  =";cin>>per;		
 		}
 	
 	void show()
 	{
 		cout<<"\n Roll  ="<<roll;		
-		cout<<"\n Per  ="<<per;		
-		cout<<"\n Name  ="<<name;		
-		cout<<"\n Addr  ="<<addr;		
-		cout<<"\n Gender  ="<<gender;		
-
+		cout<<"\n Per  ="<<per;				
 	}
+	int get_roll(){return roll;}
 };
 	
 int main()
 {
-	stud n1[10];
-	n1[2].show();
+	stud n1;
+	int n=3,i,r,ch;
+	int flag=0;
+	char choice;
+	fstream f;
+	f.open("Stud.txt",ios::out|ios::in);
+	do{
+		cout<<"\n\n MENU";
+		cout<<"\n1.Create";
+		cout<<"\n2.Display";
+		cout<<"\n3.Search";
+		cout<<"\n4.update";
+		cout<<"\n5.exit";
+		cout<<"\nEnter ur Choice = ";	
+		cin>>ch;
+		switch(ch)
+		{
+			case 1:cout<<"\n Enter no of studs= ";
+				cin>>n;
+				for(i=0;i<n;i++)
+				{
+					n1.get();
+					f.write((char*)&n1,sizeof(stud));
+				}
+				break;
+			case 2:f.seekg(0,ios::beg);
+				for(i=0;i<n;i++)
+				{		
+					f.read((char*)&n1,sizeof(stud));
+					n1.show();
+				}
+				break;
+			case 3:flag=0;
+				f.seekg(0,ios::beg);
+				cout<<"\n Enter Roll no to be searched = ";
+				cin>>r;
+				for(i=0;i<n;i++)
+				{		
+					f.read((char*)&n1,sizeof(stud));
+					if(n1.get_roll()==r)
+					{
+						n1.show();
+						flag=1;
+					}		
+				}
+				if(flag==0)
+					cout<<"\n NO RECORD";
+				break;
+			case 4:
+				f.seekg(0,ios::beg);
+				cout<<"\n Enter Roll no to be searched = ";
+				cin>>r;
+				for(i=0;i<n;i++)
+				{		
+					f.read((char*)&n1,sizeof(stud));
+					if(n1.get_roll()==r)
+					{
+						n1.get();
+						f.seekp(sizeof(stud)*i,ios::beg);
+						f.write((char*)&n1,sizeof(stud));
+					}		
+				}
+				break;
+			
+		}
+	cout<<"\n Do you want to continue = ";
+	cin>>choice;
+	}while(choice=='y'||choice=='Y');
+	f.close();
+	
 	return 0;
 }
 
