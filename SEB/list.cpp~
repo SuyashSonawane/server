@@ -12,17 +12,55 @@ void display(list<int> &lst)
 }
 int main()
 {
-	list<int> list1;
-	list<int> list2(5);
-	list2.push_front(100);
-	list2.push_back(200);
+	list<int> l1;
+	char ch;
+	int k;
+	list<int>::iterator p;
+	
+	
+	do
+	{
+		cout<<"\n\t\tMenu(Max = 5)";
+		cout<<"\n\t1.Push";
+		cout<<"\n\t2.Pop";
+		cout<<"\n\t3.Display";		
+		cout<<"\n\tEnter Ur Choice = ";
+		cin>>k;
+		switch(k)
+		{
+			case 1:if(l1.size()!=5)
+				{
+					cout<<"\nEnter Ele to pushed = ";
+					cin>>k;
+					l1.push_back(k);
+					cout<<"\n Element Pushed.";
+				}
+				else
+					cout<<"\nOverflow";
+				break;
+			case 2:if(l1.size()!=0)
+				{
+					//k=l1.back();
+//					cout<<"\n\t"<<k<<" is Poped";
+					p=lst.end();
+					cout<<"\n\t"<<*p<<" is Poped";
+					l1.pop_back();
+				}
+				else
+					cout<<"\nUnderflow";
+				break;
+			case 3:if(l1.size()==0)
+					cout<<"\n\tEmpty STACK.";
+				else
+					display(l1);
+				break;
+			default:cout<<"\nINVALID CHOICE";
+		}
+		cout<<"\n Enter Y to continue = ";
+		cin>>ch;
+	}while(ch=='y'||ch=='Y');
 
-	cout<<"List 2:: ";
-	display(list2);
-
-	// ADD 2 elements to list1
-
-	// Remove element from list2
+	
 	/*list2.pop_front();
 
 	cout<<"displaying lists after modification\n";
