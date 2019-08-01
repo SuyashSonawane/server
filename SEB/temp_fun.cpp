@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+template<class T>
+void sort(T a[10],int n)
+{
+	int i,j;
+	T k;
+	for(i=0;i<n-1;i++)
+	{
+		cout<<"\n\n PASS "<<i+1;
+		for(j=0;j<n-1-i;j++)
+		{	
+			if(a[j]>a[j+1])
+			{
+				k=a[j];a[j]=a[j+1];a[j+1]=k;			
+			}
+			cout<<"\n";
+			for(int l=0;l<n;l++)
+				cout<<"\t"<<a[l];
+		}
+	}
+}
+
+int main()
+{
+	float a[]={1.1,3.3,.8,-.9,-5};
+	sort(a,5);	
+return 0;
+}
+
+	

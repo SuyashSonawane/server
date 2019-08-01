@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+
+
+class A
+{
+	public:A(){cout<<"\n Constructor A\n";}
+	~A(){cout<<"\n Destructor A\n";}
+};
+
+class B:public A
+{	
+	public:public:B(){cout<<"\n Constructor B\n";}
+		~B(){cout<<"\n Destructor B\n";}
+};
+class C:public A
+{
+	public:public:C(){cout<<"\n Constructor C\n";}
+		~C(){cout<<"\n Destructor C\n";}
+};
+class Z:public B,public C
+{
+	public:Z(){cout<<"\n Constructor Z\n";}
+		~Z(){cout<<"\n Destructor Z\n";}
+};
+int main()
+{
+	
+	Z b1;
+	return 0;
+}

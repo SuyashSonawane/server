@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+
+class person
+{
+	protected: char name[10];
+		int age;
+	public:void get_p()
+		{
+			cout<<"\n Enter name= ";
+			cin>>name;
+			cout<<"\n Enter age= ";
+			cin>>age;			
+		}
+		void put_p()
+		{
+			cout<<"\n name= "<<name;
+			cout<<"\n age= "<<age;			
+		}
+};
+
+class student:public person
+{
+	private: float per;
+		int roll;
+	public:void get_s()
+		{
+			age=10;
+			get_p();			
+			cout<<"\n Enter roll= ";
+			cin>>roll;
+			cout<<"\n Enter per= ";
+			cin>>per;			
+		}
+		void put_s()
+		{
+			put_p();
+			cout<<"\n roll= "<<roll;
+			cout<<"\n per= "<<per;			
+		}
+};
+int main()
+{
+	cout<<"\n Person info\n";
+	person p1;
+	p1.get_p();
+	p1.put_p();
+	
+	cout<<"\n Student info\n";
+	student s1;
+	s1.get_s();	
+	s1.put_s();
+
+	return 0;
+}
