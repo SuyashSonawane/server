@@ -4,16 +4,15 @@ using namespace std;
   
 int main()
 {
-	int age;
-	char name;
-	ifstream o("student1.txt");
-	for(int i=0;i<5;i++)
+	char c;
+	int count=0;
+	fstream o("student.txt",ios::in);
+	while(!o.eof())		//while(o)	//while(o.eof()==0)
 	{
-		o>>age;
-		cout<<"\n Student no "<<i+1<<" age = "<<age;
-		cout<<"\n";
-	}	
-
+		c=o.get();	/*o>>c;*/	
+		c=c-20;
+		cout<<c;
+	}
 	
 	o.close();
 }
